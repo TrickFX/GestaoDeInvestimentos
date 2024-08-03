@@ -17,7 +17,7 @@ namespace Infrastructure.Repository
         {
             IConfiguration appsettings = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.json", optional: true)
                 .Build();
 
             _connectionString = appsettings.GetConnectionString("ConnectionString");
@@ -47,13 +47,13 @@ namespace Infrastructure.Repository
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.Investment)
                 .WithMany()
-                .HasForeignKey("Id");
+                .HasForeignKey(t => t.InvestmentId);
 
             // Configuração para Customer -> Transaction
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.Customer)
                 .WithMany(c => c.Transactions)
-                .HasForeignKey("Id");
+                .HasForeignKey(t => t.CustomerId);
         }
 
         #endregion

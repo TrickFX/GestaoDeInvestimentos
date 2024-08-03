@@ -1,6 +1,8 @@
+using AspNetCore.Scalar;
 using Core.Repository;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
+using Scalar.AspNetCore;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +13,6 @@ IConfigurationRoot appsettings = new ConfigurationBuilder()
     .Build();
 
 // Add services to the container.
-
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +35,13 @@ builder.Services.AddScoped<IInvestmentRepository, InvestmentRepository>();
 builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
 
 var app = builder.Build();
+
+app.MapScalarApiReference();
+app.UseScalar(options =>
+{
+    options.UseTheme(Theme.Default);
+    options.RoutePrefix = "api-docs";
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

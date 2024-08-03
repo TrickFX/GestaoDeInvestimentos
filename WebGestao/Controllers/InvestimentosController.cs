@@ -3,6 +3,7 @@ using Core.Entity;
 using Core.Input.Investment;
 using Core.Repository;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace WebGestao.Controllers
 {
@@ -32,7 +33,7 @@ namespace WebGestao.Controllers
                 {
                     Name = investmentInput.Name,
                     Value = investmentInput.Value,
-                    ExpiryDate = investmentInput.ExpiryDate
+                    ExpiryDate = ConverterParaData(investmentInput.ExpiryDate)
                 };
 
                 _investmentRepository.Cadastrar(investment);
@@ -61,10 +62,10 @@ namespace WebGestao.Controllers
 
                     investimento.Name = investmentInput.Name;
                     investimento.Value = investmentInput.Value;
-                    investimento.ExpiryDate = investmentInput.ExpiryDate;
+                    investimento.ExpiryDate = ConverterParaData(investmentInput.ExpiryDate);
 
                     _investmentRepository.Alterar(investimento);
-                    return Ok();
+                    return Ok("Investimento alterado com sucesso");
                 }
 
                 return NotFound(ErrorMessages.InvestmentNotFound);
@@ -89,7 +90,7 @@ namespace WebGestao.Controllers
                 if (_investmentRepository.VerificarExistenciaEntidade(id))
                 {
                     _investmentRepository.Deletar(id);
-                    return Ok();
+                    return Ok("Investimento deletado com sucesso");
                 }
 
                 return NotFound(ErrorMessages.InvestmentNotFound);
@@ -139,5 +140,21 @@ namespace WebGestao.Controllers
                 return BadRequest(e);
             }
         }
+
+        private DateTime ConverterParaData(string date)
+        {
+            DateTime dateTime;
+
+            try
+            {
+                DateTime.TryParseExact(date, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out dateTime);
+                return dateTime;
+            }
+            catch (Exception)
+            {
+                throw new Exception("A data informada é inválida!");
+            }
+        }
+
     }
 }

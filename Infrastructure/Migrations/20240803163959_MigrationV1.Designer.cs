@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240803025518_second-migration")]
-    partial class secondmigration
+    [Migration("20240803163959_MigrationV1")]
+    partial class MigrationV1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -80,10 +80,19 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Core.Entity.Transaction", b =>
                 {
                     b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InvestmentId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsPurchase")
                         .HasColumnType("bit");
@@ -93,6 +102,10 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CustomerId");
+
+                    b.HasIndex("InvestmentId");
+
                     b.ToTable("Transactions");
                 });
 
@@ -100,13 +113,13 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Core.Entity.Customer", "Customer")
                         .WithMany("Transactions")
-                        .HasForeignKey("Id")
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Core.Entity.Investment", "Investment")
                         .WithMany()
-                        .HasForeignKey("Id")
+                        .HasForeignKey("InvestmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
