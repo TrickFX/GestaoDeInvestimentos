@@ -1,5 +1,6 @@
 ﻿using Core.Entity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Infrastructure.Repository
 {
@@ -14,7 +15,12 @@ namespace Infrastructure.Repository
 
         public ApplicationDbContext()
         {
-            
+            IConfiguration appsettings = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            _connectionString = appsettings.GetConnectionString("ConnectionString");
         }
 
         #region DbSets
@@ -41,13 +47,13 @@ namespace Infrastructure.Repository
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.Investment)
                 .WithMany()
-                .HasForeignKey("InvestmentId");
+                .HasForeignKey("Id");
 
             // Configuração para Customer -> Transaction
             modelBuilder.Entity<Transaction>()
                 .HasOne(t => t.Customer)
                 .WithMany(c => c.Transactions)
-                .HasForeignKey("CustomerId");
+                .HasForeignKey("Id");
         }
 
         #endregion

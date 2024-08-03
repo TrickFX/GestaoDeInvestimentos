@@ -10,6 +10,8 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["WebGestao/WebGestao.csproj", "WebGestao/"]
+COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
+COPY ["Core/Core.csproj", "Core/"]
 RUN dotnet restore "./WebGestao/WebGestao.csproj"
 COPY . .
 WORKDIR "/src/WebGestao"

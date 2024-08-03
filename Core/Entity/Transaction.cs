@@ -2,11 +2,8 @@
 
 namespace Core.Entity
 {
-    public class Transaction
+    public class Transaction : EntityBase
     {
-        [Key]
-        public int TransactionId { get; set; }
-
         [Required]
         public required Investment Investment { get; set; }
 

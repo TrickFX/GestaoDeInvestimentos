@@ -2,10 +2,8 @@
 
 namespace Core.Entity
 {
-    public class Customer
+    public class Customer : EntityBase
     {
-        [Key]
-        public int CustomerId { get; set; }
 
         [Required]
         [MaxLength(100)]

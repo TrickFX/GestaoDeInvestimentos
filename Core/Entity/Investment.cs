@@ -2,11 +2,8 @@
 
 namespace Core.Entity
 {
-    public class Investment
+    public class Investment : EntityBase
     {
-        [Key]
-        public int InvestmentId { get; set; }
-
         [Required]
         [MaxLength(100)]
         public required string Name { get; set; }
