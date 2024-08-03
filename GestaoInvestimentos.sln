@@ -5,11 +5,13 @@ VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGestao", "WebGestao\WebGestao.csproj", "{4A3AD884-B0D4-4319-8696-3EA527F958EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{FB4123AA-AAC8-490B-B1E1-EFE2783DD87C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{FB4123AA-AAC8-490B-B1E1-EFE2783DD87C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4BBF8957-8474-40EB-8D22-10E8A0E299FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{4BBF8957-8474-40EB-8D22-10E8A0E299FC}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{34B4F3D8-64D9-4E06-AC16-9A5283AC25F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "..\Authentication\Authentication.csproj", "{A92DADF7-CE03-4229-BD21-9712B08309BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{34B4F3D8-64D9-4E06-AC16-9A5283AC25F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34B4F3D8-64D9-4E06-AC16-9A5283AC25F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34B4F3D8-64D9-4E06-AC16-9A5283AC25F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A92DADF7-CE03-4229-BD21-9712B08309BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A92DADF7-CE03-4229-BD21-9712B08309BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A92DADF7-CE03-4229-BD21-9712B08309BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A92DADF7-CE03-4229-BD21-9712B08309BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

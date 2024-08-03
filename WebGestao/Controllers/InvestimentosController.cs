@@ -1,7 +1,9 @@
 ﻿using Core.Constants;
 using Core.Entity;
+using Core.Enums;
 using Core.Input.Investment;
 using Core.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
@@ -25,10 +27,14 @@ namespace WebGestao.Controllers
         /// <returns></returns>
         /// <response code="201">Sucesso no cadastro de um investimento</response>
         [HttpPost("AdicionarInvestimento/")]
+        [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult AdicionarInvestimento([FromBody] InvestmentCreateInput investmentInput)
         {
             try
             {
+                if (String.IsNullOrEmpty(investmentInput.Name))
+                    return BadRequest("É obrigatório preencher o nome do produto/investimento!");
+
                 var investment = new Investment()
                 {
                     Name = investmentInput.Name,
@@ -52,10 +58,14 @@ namespace WebGestao.Controllers
         /// <returns></returns>
         /// <response code="200">Sucesso na alteração de um investimento</response>
         [HttpPut("AlterarInvestimento/")]
+        [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult AlterarInvestimento([FromBody] InvestmentInput investmentInput)
         {
             try
             {
+                if (String.IsNullOrEmpty(investmentInput.Name))
+                    return BadRequest("É obrigatório preencher o nome do produto/investimento!");
+
                 if (_investmentRepository.VerificarExistenciaEntidade(investmentInput.Id))
                 {
                     var investimento = _investmentRepository.ObterPorId(investmentInput.Id);
@@ -83,6 +93,7 @@ namespace WebGestao.Controllers
         /// <returns></returns>
         /// <response code="200">Sucesso ao deletar um investimento</response>
         [HttpDelete("ApagarInvestimento/{id:int}")]
+        [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult ApagarInvestimento([FromRoute] int id)
         {
             try
@@ -106,6 +117,7 @@ namespace WebGestao.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos/")]
+        [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult ObterTodos()
         {
             try
@@ -124,6 +136,7 @@ namespace WebGestao.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("ObterPorId/{id:int}")]
+        [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult ObterPorId([FromRoute] int id)
         {
             try

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.Entity
 {
@@ -16,6 +17,13 @@ namespace Core.Entity
         [Required]
         [MaxLength(100)]
         public required string Email { get; set; }
+
+        [Required]
+        [MaxLength(100)]
+        public required string Password { get; set; }
+
+        [Required]
+        public required PermissionType PermissionType { get; set; }
 
         public ICollection<Transaction>? Transactions { get; set; }
     }
