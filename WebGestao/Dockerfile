@@ -12,6 +12,7 @@ WORKDIR /src
 COPY ["WebGestao/WebGestao.csproj", "WebGestao/"]
 COPY ["Infrastructure/Infrastructure.csproj", "Infrastructure/"]
 COPY ["Core/Core.csproj", "Core/"]
+COPY ["Authentication/Authentication.csproj", "Authentication/"]
 RUN dotnet restore "./WebGestao/WebGestao.csproj"
 COPY . .
 WORKDIR "/src/WebGestao"
