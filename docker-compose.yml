@@ -1,0 +1,31 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      SA_PASSWORD: "M@sterk3y"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+    networks:
+      - gestao_network
+
+  webgestao:
+    image: ${DOCKER_REGISTRY-}webgestao
+    build:
+      context: .
+      dockerfile: WebGestao/Dockerfile
+    depends_on:
+      - sqlserver
+    networks:
+      - gestao_network
+
+volumes:
+  sqlserverdata:
+
+networks:
+  gestao_network:
