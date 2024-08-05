@@ -8,5 +8,20 @@ namespace Infrastructure.Repository
         public InvestmentRepository(ApplicationDbContext context) : base(context)
         {
         }
+
+        public IList<Investment> ObterInvestimentosAtivos()
+        {
+            try
+            {
+                var activeInvestments = _context.Investments
+                    .Where(c => c.ExpiryDate > DateTime.UtcNow);
+
+                return activeInvestments.ToList();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

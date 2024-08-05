@@ -4,6 +4,7 @@ using Core.Enums;
 using Core.Input.Investment;
 using Core.Repository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
 
@@ -26,6 +27,10 @@ namespace WebGestao.Controllers
         /// <param name="investmentInput"></param>
         /// <returns></returns>
         /// <response code="201">Sucesso no cadastro de um investimento</response>
+        /// <remarks>
+        /// Observação:
+        /// O campo expiryDate é preenchido no formato dd/MM/yyyy.
+        /// </remarks>
         [HttpPost("AdicionarInvestimento/")]
         [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult AdicionarInvestimento([FromBody] InvestmentCreateInput investmentInput)
@@ -34,6 +39,9 @@ namespace WebGestao.Controllers
             {
                 if (String.IsNullOrEmpty(investmentInput.Name))
                     return BadRequest("É obrigatório preencher o nome do produto/investimento!");
+
+                if (investmentInput.Value == 0)
+                    return BadRequest("O valor do produto/investimento não pode ser zero ou nulo!");
 
                 var investment = new Investment()
                 {
@@ -57,6 +65,10 @@ namespace WebGestao.Controllers
         /// <param name="investmentInput"></param>
         /// <returns></returns>
         /// <response code="200">Sucesso na alteração de um investimento</response>
+        /// <remarks>
+        /// Observação:
+        /// O campo expiryDate é preenchido no formato dd/MM/yyyy.
+        /// </remarks>
         [HttpPut("AlterarInvestimento/")]
         [Authorize(Roles = nameof(PermissionType.Operator))]
         public IActionResult AlterarInvestimento([FromBody] InvestmentInput investmentInput)
@@ -65,6 +77,9 @@ namespace WebGestao.Controllers
             {
                 if (String.IsNullOrEmpty(investmentInput.Name))
                     return BadRequest("É obrigatório preencher o nome do produto/investimento!");
+
+                if (investmentInput.Value == 0)
+                    return BadRequest("O valor do produto/investimento não pode ser zero ou nulo!");
 
                 if (_investmentRepository.VerificarExistenciaEntidade(investmentInput.Id))
                 {
@@ -117,7 +132,7 @@ namespace WebGestao.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("ObterTodos/")]
-        [Authorize(Roles = nameof(PermissionType.Operator))]
+        [AllowAnonymous]
         public IActionResult ObterTodos()
         {
             try
@@ -136,7 +151,7 @@ namespace WebGestao.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("ObterPorId/{id:int}")]
-        [Authorize(Roles = nameof(PermissionType.Operator))]
+        [AllowAnonymous]
         public IActionResult ObterPorId([FromRoute] int id)
         {
             try

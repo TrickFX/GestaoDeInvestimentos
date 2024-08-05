@@ -13,6 +13,10 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Authentication", "Authentication\Authentication.csproj", "{ACC41C92-F6E5-472F-A0FA-5F0ECB388496}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebGestao.Tests", "WebGestao.Tests\WebGestao.Tests.csproj", "{10BC5574-753D-42C3-BF55-AB7556B71982}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailService", "EmailService\EmailService.csproj", "{49318921-3B14-49DF-8C62-1C1EB393C97D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{ACC41C92-F6E5-472F-A0FA-5F0ECB388496}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACC41C92-F6E5-472F-A0FA-5F0ECB388496}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACC41C92-F6E5-472F-A0FA-5F0ECB388496}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BC5574-753D-42C3-BF55-AB7556B71982}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BC5574-753D-42C3-BF55-AB7556B71982}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BC5574-753D-42C3-BF55-AB7556B71982}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BC5574-753D-42C3-BF55-AB7556B71982}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49318921-3B14-49DF-8C62-1C1EB393C97D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49318921-3B14-49DF-8C62-1C1EB393C97D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49318921-3B14-49DF-8C62-1C1EB393C97D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49318921-3B14-49DF-8C62-1C1EB393C97D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

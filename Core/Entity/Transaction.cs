@@ -8,13 +8,13 @@ namespace Core.Entity
         public int InvestmentId { get; set; }
 
         [Required]
-        public required Investment Investment { get; set; }
+        public Investment? Investment { get; set; }
 
         [Required]
         public int CustomerId { get; set; }
 
         [Required]
-        public required Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
         [Required]
         public DateTime TransactionDate { get; set; }

@@ -13,6 +13,10 @@ using Authentication.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Configurar codificação para UTF-8
+Console.OutputEncoding = Encoding.UTF8;
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
 // obtendo o appsettings
 IConfigurationRoot appsettings = new ConfigurationBuilder()
 .AddJsonFile("appsettings.json")
@@ -48,17 +52,17 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "API de Gerenciamento e Compra de Investimentos",
         Version = "v1",
-        Description = "A API de Gestão de Investimentos é uma aplicação WEB, permitindo que os usuários " +
-        "da operação gerenciem os investimentos disponíveis e que os clientes possam comprar, vender e acompanhar " +
-        "seus investimentos. Esta API oferece endpoints seguros para realizar operações relacionadas a investimentos e " +
-        "transações, além de autenticação baseada em tokens JWT (JSON Web Tokens)."
+        Description = "A API de Gestao de Investimentos permite que os usuarios " +
+        "da operacao gerenciem os investimentos disponiveis e que os clientes possam comprar, vender e acompanhar " +
+        "seus investimentos. Esta API oferece endpoints seguros para realizar operacoes relacionadas a investimentos e " +
+        "transacoes, alem de autenticacao baseada em tokens JWT (JSON Web Tokens)."
     });
 
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description =
             "JWT Authorization Header - utilizado com Bearer Authentication.\r\n\r\n" +
-            "Digite 'Bearer' [espaço] e então seu token no campo abaixo.\r\n\r\n" +
+            "Digite 'Bearer' [espaco] e entao seu token no campo abaixo.\r\n\r\n" +
             "Exemplo (informar sem as aspas): 'Bearer 12345abcdef'",
         Name = "Authorization",
         In = ParameterLocation.Header,

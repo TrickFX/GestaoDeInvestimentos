@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebGestao.Controllers
 {
+    /// <summary>
+    /// Responsável por gerar o token de autenticação
+    /// </summary>
     [ApiController]
     [Route("/[controller]")]
     public class AuthenticationController : ControllerBase
@@ -15,6 +18,11 @@ namespace WebGestao.Controllers
             _tokenRepository = tokenRepository;
         }
 
+        /// <summary>
+        /// Endpoint responsável por realizar a geração do Token (Bearer)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         [HttpPost("GetToken/")]
         public IActionResult GetToken([FromBody] CustomerLoginInput input)
         {

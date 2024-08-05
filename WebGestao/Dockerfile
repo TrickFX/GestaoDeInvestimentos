@@ -25,4 +25,7 @@ RUN dotnet publish "./WebGestao.csproj" -c $BUILD_CONFIGURATION -o /app/publish 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
 ENTRYPOINT ["dotnet", "WebGestao.dll"]
