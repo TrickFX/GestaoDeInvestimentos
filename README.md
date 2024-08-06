@@ -101,6 +101,8 @@ No terminal, navegue até o diretório raiz do projeto e execute o comando:
 docker-compose up
 ```
 
-Após o término, os containers serão geradas e a aplicação estará disponível na URL `http://localhost:8080/swagger`:
+Após o término, os containers serão geradas e a aplicação estará disponível na URL `http://host.docker.internal:8080/swagger`:
 
 ![Logo](https://i.ibb.co/6XJSyXc/container.png)
+
+O vídeo demonstrando o uso da aplicação está disponível na URL: [https://youtu.be/JjY_ehMJ3k4](https://youtu.be/JjY_ehMJ3k4)
