@@ -84,7 +84,9 @@ git clone https://github.com/TrickFX/GestaoDeInvestimentos.git
 cd GestaoDeInvestimentos
 ```
 #### 2.2. Crie a imagem no docker
-OBS: Não será necessário realizar a configuração no appsettings caso for utilizar o docker
+Observações: 
+- Não será necessário realizar a configuração no appsettings caso for utilizar o docker
+- O console app (EmailService) responsável por realizar o envio de e-mail não está disponível via docker.
 
 No diretório raiz do projeto (onde se encontra o docker-compose), digite o seguinte comando `docker-compose build`.
 Após a finalização, o mesmo gerará uma imagem da aplicação desenvolvida:
