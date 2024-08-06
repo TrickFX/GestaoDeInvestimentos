@@ -23,9 +23,10 @@ services:
       - sqlserver
     ports:
      - "8080:8080"
-     - "8081:8081"
     networks:
       - gestao_network
+    environment:
+     ASPNETCORE_URLS: http://host.docker.internal:8080
 
 volumes:
   sqlserverdata:
